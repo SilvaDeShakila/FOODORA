@@ -1,237 +1,315 @@
-# FOODORA — Sri Lanka's Premier Real-Time Food Delivery Platform
-> *"Cravings, Delivered in Real Time."*
+<div align="center">
 
-FOODORA is a complete, production-grade, full-stack food delivery web application crafted specifically for the Sri Lankan market. Built with a high-performance **Black & Gold** aesthetic inspired by modern editorial luxury, it features real JWT authentication, role-based workflows, live GPS delivery visualizer, printable official tax invoices, and atomic JSON file persistence with zero external database dependencies.
+# 🍔 FOODORA
 
----
+### Sri Lankan Food Delivery Platform
 
-## 🍛 Highlights & Sri Lankan Market Localization
+**A modern full-stack food delivery application designed for the Sri Lankan market.**
 
-- **100% Sri Lankan Localization**: Built for authentic local favorites including *Kottu Roti (Cheese, Dolphin, Chicken)*, *Village Rice & Curry with Pol Sambol*, *Egg Hoppers & Pol Roti*, *Colombo Dum Biriyani*, *Negombo Lagoon Crab*, and *Ceylon Bakery Short Eats*.
-- **Currency & Regions**: Accurate pricing in **Sri Lankan Rupees (LKR / Rs.)** across key regional hubs: **Colombo (01–15), Dehiwala, Nugegoda, Kandy, Galle Fort, Negombo, Kurunegala, and Matara**.
-- **Interactive Live Route Visualizer**: Dynamic simulated Colombo street telemetry map with rider avatar navigation, distance indicators, live ETA countdown, and driver chat drawer.
-- **Official Printable Tax Receipts**: Printable tax invoices compliant with Sri Lankan business receipt standards (TIN, VAT registration, order itemization).
-- **Celebration Delights**: Real-time canvas-confetti celebration and audio feedback upon successful order delivery.
-- **Zero Database Requirement**: Persistent data storage in atomic JSON files with write locks and temp file renames (`server/data/*.json`).
+![React](https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
----
+<br>
 
-## 🎨 Visual Identity — Luxury Black & Gold Design System
+![GitHub repo size](https://img.shields.io/github/repo-size/SilvaDeShakila/FOODORA?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/SilvaDeShakila/FOODORA?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/SilvaDeShakila/FOODORA?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/SilvaDeShakila/FOODORA?style=flat-square)
 
-The application uses a consistent, high-contrast palette:
-- **Main Background**: `#0B0F14`
-- **Secondary Background**: `#111720`
-- **Cards & Surfaces**: `#151B23`
-- **Elevated Surfaces**: `#1C2530`
-- **Primary Accent**: `#D4AF37` (Metallic Gold)
-- **Accent Hover**: `#E8C66A`
-- **Main Text**: `#F8FAFC`
-- **Secondary Text**: `#94A3B8`
-- **Borders & Dividers**: `#293241`
+**[Explore the Repository](https://github.com/SilvaDeShakila/FOODORA)**
+
+</div>
 
 ---
 
-## 👥 Role-Based Portals & Demo Accounts
+## 🌟 Overview
 
-All demo accounts use password: `password123`
+**FOODORA** is a full-stack food delivery web application inspired by modern online ordering platforms.
 
-| Role | Email | Password | Persona & Scope |
-| :--- | :--- | :--- | :--- |
-| **Customer (Colombo)** | `customer@foodora.lk` | `password123` | Nimal Perera (Kollupitiya, Colombo 03) |
-| **Customer (Kandy)** | `dilani@foodora.lk` | `password123` | Dilani Jayawardena (Peradeniya Rd, Kandy) |
-| **Restaurant Owner** | `owner@foodora.lk` | `password123` | Sunil Fernando (Owner of Raja Bojun Heritage) |
-| **Delivery Rider** | `rider@foodora.lk` | `password123` | Roshan Gunaratne (Colombo Express Rider) |
-| **Super Admin** | `admin@foodora.lk` | `password123` | Anura Senanayake (Foodora Operations HQ) |
+Designed with the Sri Lankan food delivery experience in mind, FOODORA brings together customers, restaurant owners, delivery riders, and administrators within a unified application.
 
-> ⚡ **Demo Tester Bar**: A persistent top banner enables instant 1-click persona switching without re-typing passwords.
+The project explores responsive frontend design, role-based authentication, REST APIs, order management, and real-time communication.
+
+> **Project status:** Portfolio and development project. Production readiness, security, and complete feature behavior require further testing and review.
 
 ---
 
-## 🛠️ Technology Stack & Architecture
+## ✨ Features
 
-### Architecture Overview
-FOODORA operates a unified full-stack architecture where a single Node.js Express process serves both the backend REST APIs under `/api/*` and Vite React frontend middleware during development (`tsx server.ts`).
+### 🛒 Customer Experience
 
-```
-[ Browser / Client (React 19 + TypeScript + Tailwind CSS) ]
-                         │
-               HTTP / REST API requests
-                         │
-                         ▼
-        [ Express Server (`server.ts`) ]
-         ├── CORS & JSON Body Parsing
-         ├── JWT Auth & Role Authorization Middleware
-         ├── REST Routes (/api/auth, /api/orders, etc.)
-         └── JsonStorage Service
-                 │
-           Atomic File I/O (Write Lock + Temp Renames)
-                 │
-                 ▼
-       [ `server/data/*.json` Persistent Files ]
-```
+- Restaurant discovery and browsing
+- Restaurant menus and food details
+- Shopping cart management
+- Checkout interface
+- Order history and account management
+- Order status and tracking interfaces
+- Promotions and offers
+- Responsive layouts for different screen sizes
 
-### Frontend
-- **React 19** with **TypeScript**
-- **Vite 8** (Lightning fast bundling)
-- **Tailwind CSS v4** (Custom Gold `@theme` system)
-- **React Router DOM v7**
-- **Lucide React** (Clean editorial icons)
-- **Canvas Confetti** (Order completion celebration)
-- **Leaflet & SVG Interactive Street Telemetry**
+### 🏪 Restaurant Owner Dashboard
 
-### Backend & Persistence
-- **Node.js** & **Express 4** with TypeScript (`tsx`)
-- **JSON File-Based Persistence** (`server/services/jsonStorage.ts`)
-- **bcryptjs** (10-round salted password hashing)
-- **jsonwebtoken (JWT)** for signed stateless bearer tokens
-- **Atomic File Operations** (Locks + temporary rename strategy preventing concurrent collisions)
+- Dedicated restaurant owner interface
+- Restaurant and menu management workflows
+- Order management interfaces
+- Restaurant operations dashboard
+
+### 🛵 Delivery Rider Dashboard
+
+- Dedicated rider interface
+- Delivery-related workflows
+- Order status management
+- Route and map interface components
+
+### 🛡️ Administration
+
+- Administrative dashboard
+- User and platform management routes
+- Restaurant and order administration workflows
+
+### ⚡ Backend Architecture
+
+- Node.js and Express backend
+- TypeScript-based application structure
+- REST API routes
+- JWT-based authentication implementation
+- Password hashing with bcrypt
+- Role-based access middleware
+- Socket.IO service integration
+- JSON-file persistence for local development
+
+> Some features are implemented as interfaces or development workflows and may require additional configuration, integration, or testing.
 
 ---
 
-## 📁 Directory Structure
+## 🛠️ Technology Stack
 
-```
+| Layer | Technologies |
+|---|---|
+| Frontend | React, TypeScript, Vite |
+| Styling | CSS and responsive UI components |
+| Backend | Node.js, Express, TypeScript |
+| Authentication | JWT, bcrypt |
+| Real-time communication | Socket.IO |
+| Data persistence | Local JSON files |
+| Testing | API test files |
+| Version control | Git and GitHub |
+
+---
+
+## 🏗️ Project Structure
+
+```text
 FOODORA/
+│
 ├── server/
 │   ├── config/
-│   │   └── index.ts              # Port, JWT secrets, environment variables
-│   ├── data/
-│   │   ├── users.json            # Customer, owner, rider, admin accounts
-│   │   ├── restaurants.json      # 12+ Sri Lankan partner restaurants
-│   │   ├── menu-items.json       # 40+ authentic dishes with LKR pricing
-│   │   ├── orders.json           # Orders with timelines and telemetry
-│   │   ├── reviews.json          # Customer reviews and ratings
-│   │   ├── promotions.json       # Active promotional discount codes
-│   │   └── notifications.json    # Order and platform notifications
 │   ├── middleware/
-│   │   └── auth.ts               # JWT verification & role authorization
 │   ├── routes/
-│   │   ├── auth.ts               # Register, login, demo switch, profile
-│   │   ├── restaurants.ts        # Search, filter by cuisine/city/rating
-│   │   ├── menuItems.ts          # Menu item queries and owner CRUD
-│   │   ├── orders.ts             # Order submission, backend pricing, tracking
-│   │   ├── reviews.ts            # Restaurant reviews and rating calculation
-│   │   ├── users.ts              # Profile and saved delivery address book
-│   │   ├── owner.ts              # Restaurant owner orders & kitchen milestones
-│   │   ├── rider.ts              # Rider task acceptance & delivery updates
-│   │   ├── admin.ts              # Admin KPIs, moderation, and data reset
-│   │   ├── promotions.ts         # Voucher code validation
-│   │   ├── notifications.ts      # Live alert messages
-│   │   └── health.ts             # Service health check
 │   ├── scripts/
-│   │   ├── seed.ts               # CLI database re-seeder
-│   │   └── seedData.ts           # Realistic Sri Lankan sample dataset generator
 │   └── services/
-│       └── jsonStorage.ts        # Reusable file persistence service with write locking
+│
 ├── src/
 │   ├── components/
-│   │   ├── CartDrawer.tsx        # Slide-over cart review
-│   │   ├── DemoBar.tsx           # Quick persona switcher for testers
-│   │   ├── FoodCard.tsx          # Food dish card with veg/spicy badges
-│   │   ├── FoodDetailsModal.tsx  # Portions, spice levels, add-ons
-│   │   ├── FoodoraLogo.tsx       # Foodora brand identity
-│   │   ├── Footer.tsx            # Sri Lankan island coverage footer
-│   │   ├── ImageWithFallback.tsx # Preloading image component with Sri Lankan fallbacks
-│   │   ├── InvoiceModal.tsx      # Printable official tax receipt
-│   │   ├── LiveRouteMap.tsx      # Animated Colombo road map & rider telemetry
-│   │   ├── Navbar.tsx            # Header navigation & city selector
-│   │   ├── OrderStatusBadge.tsx  # Color-coded lifecycle badge
-│   │   ├── OrderTimeline.tsx     # Chronological status stepper
-│   │   ├── ProtectedRoute.tsx    # Role & auth route guards
-│   │   └── RestaurantCard.tsx    # Cover photo, ratings, tags, and fees
 │   ├── contexts/
-│   │   ├── AuthContext.tsx       # Session state, login, register, role switch
-│   │   ├── CartContext.tsx       # Local storage cart with single-restaurant rule
-│   │   └── ToastContext.tsx      # Global notification toast provider
 │   ├── pages/
-│   │   ├── AccountPage.tsx       # User profile, saved addresses, order history
-│   │   ├── AdminDashboardPage.tsx# Platform analytics and moderation
-│   │   ├── CartPage.tsx          # Full cart review with coupon validation
-│   │   ├── CheckoutPage.tsx      # Sri Lankan delivery address & COD checkout
-│   │   ├── HomePage.tsx          # Landing hero, cuisines, featured kitchens
-│   │   ├── LoginPage.tsx         # Sign in with quick-fill demo buttons
-│   │   ├── OrderTrackingPage.tsx # Live order tracker with simulated steps
-│   │   ├── OwnerDashboardPage.tsx# Restaurant owner kitchen management
-│   │   ├── PromotionsPage.tsx    # Discount codes with 1-click copy
-│   │   ├── RegisterPage.tsx      # Customer registration
-│   │   ├── RestaurantDetailsPage.tsx # Menu categories, search, reviews
-│   │   └── RestaurantsPage.tsx   # Discovery with filters and sorting
 │   ├── services/
-│   │   └── api.ts                # Client API service
 │   ├── types/
-│   │   └── index.ts              # Shared TypeScript interfaces
-│   ├── App.tsx                   # Main React routing configuration
-│   └── main.tsx                  # Client entry point
+│   ├── App.tsx
+│   └── main.tsx
+│
 ├── tests/
-│   └── api.test.ts               # Automated verification test suite
+│   └── api.test.ts
+│
 ├── .env.example
+├── .gitignore
+├── index.html
 ├── package.json
-├── server.ts                     # Full-stack Express server with Vite middleware
+├── server.ts
 ├── tsconfig.json
-└── vite.config.ts
+├── vite.config.ts
+└── README.md
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js**: v18.0.0 or later (Node 20 LTS recommended)
-- **npm**: v9.0.0 or later
 
-### 1. Installation
+- Node.js
+- npm
+- Git
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/SilvaDeShakila/FOODORA.git
+```
+
+**2. Navigate to the project**
+
+```bash
+cd FOODORA
+```
+
+**3. Install dependencies**
+
 ```bash
 npm install
 ```
 
-### 2. Configure Environment Variables
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
+**4. Configure environment variables**
+
+Create a `.env` file based on `.env.example`.
+
+On Windows CMD:
+
+```cmd
+copy .env.example .env
 ```
 
-Default values in `.env`:
-```env
-PORT=3000
-NODE_ENV="development"
-JWT_SECRET="foodora_jwt_secret_dev_sri_lanka_change_in_production"
-```
+Update the configuration with appropriate values for your local environment. Never commit real credentials.
 
-### 3. Run Automated Validation Test Suite
-Verify that sample seed data, bcrypt hashing, JWT issuance, promotional discount logic, and order state machines pass:
-```bash
-npm test
-```
+### Development
 
-### 4. Start Full-Stack Application
+Start the development server:
+
 ```bash
 npm run dev
 ```
 
-Open your browser to:
-👉 **http://localhost:3000**
+The project uses a TypeScript server entry point (`server.ts`).
+
+### Build
+
+Generate the frontend production build:
+
+```bash
+npm run build
+```
+
+### Testing
+
+Run the API tests:
+
+```bash
+npm run test
+```
+
+### Type Checking
+
+Check TypeScript types:
+
+```bash
+npm run lint
+```
+
+### Seed Data
+
+To run the data seeding script:
+
+```bash
+npm run seed
+```
+
+> **Note:** Seeding may create or modify local application data. Review the seed script before running it.
 
 ---
 
-## 🎟️ Active Promotion Codes
+## 🔐 Security Considerations
 
-| Code | Discount | Minimum Order | Description |
-| :--- | :--- | :--- | :--- |
-| `FOODORA20` | 20% OFF (Max Rs. 800) | Rs. 1,500 | 20% discount on all partner restaurants |
-| `COLOMBOFAST` | Flat Rs. 300 OFF | Rs. 1,200 | Flat discount on Colombo district orders |
-| `FIRSTEAT` | 15% OFF (Max Rs. 500) | Rs. 1,000 | 15% discount on your first FOODORA order |
+FOODORA includes authentication and authorization-related backend components.
+
+Security practices for development and deployment include:
+
+- Keep JWT secrets in environment variables.
+- Never publish `.env` files containing real credentials.
+- Avoid committing user records and private application data.
+- Validate API inputs and enforce role-based authorization.
+- Use strong, unique secrets for deployment.
+- Review authentication and authorization behavior before production use.
+
+**Important:** This repository is intended for development and portfolio demonstration. A production deployment requires further security assessment.
 
 ---
 
-## 🔒 Security Architecture
+## 💾 Data Storage
 
-1. **Password Encryption**: Stored exclusively as 10-round salted `bcrypt` hashes. Plaintext passwords are never persisted.
-2. **Backend Price Integrity**: All subtotal calculations, discounts, delivery fees, and minimum orders are validated server-side by loading original dish records from storage. Client-submitted prices are ignored.
-3. **Role Escalation Protection**: Public registration (`/api/auth/register`) enforces the `customer` role only. Admin and partner roles cannot be created via public registration.
-4. **Role-Based Endpoint Protection**: Sensitive routes (owner dashboard, rider dispatch, admin moderation) require valid JWT claims and are guarded by `requireRole(...)` middleware.
-5. **Concurrency & Data Integrity**: File operations in `server/services/jsonStorage.ts` use sequential in-memory mutex locks and write to `.tmp` files before atomically renaming, preventing corruption during concurrent writes.
+The project uses JSON-file persistence for local application data.
+
+This approach is convenient for development but has limitations involving concurrent writes, scalability, durability, and production hosting.
+
+A production-oriented deployment would benefit from a dedicated database and suitable data migration strategy.
+
+---
+
+## 🧪 Testing
+
+The repository includes API test source files under:
+
+```text
+tests/
+```
+
+Available test commands can be checked through the scripts defined in `package.json`.
+
+Testing and build validation should be completed before treating a release as production-ready.
+
+---
+
+## 🗺️ Future Improvements
+
+Potential future enhancements include:
+
+- Persistent database integration
+- Improved automated testing and CI
+- Production deployment configuration
+- Payment gateway integration
+- Enhanced live delivery tracking
+- Performance and accessibility improvements
+- Expanded monitoring and error reporting
+
+---
+
+## 🤝 Contributing
+
+Contributions, suggestions, and bug reports are welcome.
+
+To contribute:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make and test your changes.
+4. Submit a pull request.
+
+For bugs or suggestions, open an issue in the GitHub repository.
 
 ---
 
 ## 📄 License
-Licensed under Apache-2.0. Built for Google AI Studio.
+
+No license has been specified for this repository yet.
+
+Unless a license is added, the source code remains subject to the repository owner's applicable copyright rights.
+
+---
+
+## ⭐ Support
+
+If you find FOODORA interesting, consider giving the repository a ⭐ on GitHub.
+
+<div align="center">
+
+### 🍔 FOODORA
+
+**Built with a focus on modern web development and the Sri Lankan food delivery experience.**
+
+[GitHub Repository](https://github.com/SilvaDeShakila/FOODORA)
+
+</div>
