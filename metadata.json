@@ -1,0 +1,6 @@
+{
+  "name": "FOODORA - Sri Lankan Food Delivery",
+  "description": "Sri Lanka's premier food delivery platform. Order authentic kottu, rice & curry, hoppers, burgers, and more across Colombo, Kandy, Galle and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

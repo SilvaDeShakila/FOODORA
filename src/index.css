@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-300: #F3DC8E;
+  --color-gold-400: #E8C66A;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #B89628;
+  --color-gold-700: #937418;
+  --color-dark-950: #0B0F14;
+  --color-dark-900: #111720;
+  --color-dark-850: #151B23;
+  --color-dark-800: #1C2530;
+  --color-dark-700: #293241;
+  --color-text-main: #F8FAFC;
+  --color-text-muted: #94A3B8;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0B0F14;
+  color: #F8FAFC;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom Gold Glow & Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #293241;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Selection Color */
+::selection {
+  background-color: #D4AF37;
+  color: #0B0F14;
+}
