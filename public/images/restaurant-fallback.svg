@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="100%" height="100%">
+  <defs>
+    <linearGradient id="restBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#151B23"/>
+      <stop offset="60%" stop-color="#111720"/>
+      <stop offset="100%" stop-color="#0B0F14"/>
+    </linearGradient>
+    <linearGradient id="restGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C66A"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#997A15"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="350" fill="url(#restBg)"/>
+
+  <!-- Subtle architectural grid lines -->
+  <line x1="0" y1="280" x2="600" y2="280" stroke="#293241" stroke-width="2"/>
+
+  <!-- Restaurant storefront building -->
+  <g transform="translate(300, 155)">
+    <!-- Main facade -->
+    <rect x="-140" y="-70" width="280" height="150" rx="8" fill="#1C2530" stroke="#293241" stroke-width="2"/>
+
+    <!-- Canopy with scalloped trim -->
+    <path d="M -150 -65 L -130 -105 L 130 -105 L 150 -65 Z" fill="url(#restGold)"/>
+    <path d="M -150 -65 Q -140 -55 -130 -65 Q -120 -55 -110 -65 Q -100 -55 -90 -65 Q -80 -55 -70 -65 Q -60 -55 -50 -65 Q -40 -55 -30 -65 Q -20 -55 -10 -65 Q 0 -55 10 -65 Q 20 -55 30 -65 Q 40 -55 50 -65 Q 60 -55 70 -65 Q 80 -55 90 -65 Q 100 -55 110 -65 Q 120 -55 130 -65 Q 140 -55 150 -65 Z" fill="#997A15"/>
+
+    <!-- Signboard -->
+    <rect x="-80" y="-135" width="160" height="30" rx="6" fill="#0B0F14" stroke="url(#restGold)" stroke-width="2"/>
+    <text x="0" y="-115" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" fill="#D4AF37" letter-spacing="2">FOODORA</text>
+
+    <!-- Doorway -->
+    <rect x="-30" y="5" width="60" height="75" rx="4" fill="#0B0F14" stroke="url(#restGold)" stroke-width="1.5"/>
+    <line x1="0" y1="5" x2="0" y2="80" stroke="url(#restGold)" stroke-width="1.5"/>
+    <circle cx="-6" cy="45" r="2.5" fill="url(#restGold)"/>
+    <circle cx="6" cy="45" r="2.5" fill="url(#restGold)"/>
+
+    <!-- Windows with warm amber lighting -->
+    <rect x="-115" y="-15" width="60" height="65" rx="4" fill="#111720" stroke="#293241" stroke-width="2"/>
+    <rect x="-110" y="-10" width="50" height="55" rx="2" fill="#D4AF37" fill-opacity="0.15"/>
+    <line x1="-85" y1="-10" x2="-85" y2="45" stroke="#293241" stroke-width="1.5"/>
+    <line x1="-110" y1="18" x2="-60" y2="18" stroke="#293241" stroke-width="1.5"/>
+
+    <rect x="55" y="-15" width="60" height="65" rx="4" fill="#111720" stroke="#293241" stroke-width="2"/>
+    <rect x="60" y="-10" width="50" height="55" rx="2" fill="#D4AF37" fill-opacity="0.15"/>
+    <line x1="85" y1="-10" x2="85" y2="45" stroke="#293241" stroke-width="1.5"/>
+    <line x1="60" y1="18" x2="110" y2="18" stroke="#293241" stroke-width="1.5"/>
+  </g>
+
+  <text x="300" y="315" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#94A3B8" letter-spacing="1">PARTNER RESTAURANT • SRI LANKA</text>
+</svg>

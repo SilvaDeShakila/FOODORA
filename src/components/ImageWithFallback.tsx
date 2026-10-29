@@ -1,48 +1,105 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { SVG_DATA_URIS, FALLBACK_PATHS } from '../assets/fallbacks.js';
 
-interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+// Remember images that have already loaded during this app session.
+const loadedImageSources = new Set<string>();
+
+export interface ImageWithFallbackProps
+  extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackType?: 'restaurant' | 'food' | 'avatar';
+  containerClassName?: string;
 }
-
-const DEFAULT_FALLBACKS = {
-  food: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
-  restaurant: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
-  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-};
 
 export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   src,
   alt = '',
   className = '',
+  containerClassName = '',
   fallbackType = 'food',
+  loading = 'lazy',
+  onLoad,
+  onError,
   ...props
 }) => {
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const hasValidSrc = Boolean(src && src.trim().length > 0);
 
-  const fallbackSrc = DEFAULT_FALLBACKS[fallbackType];
-  const targetSrc = hasError || !src ? fallbackSrc : src;
+  const [stage, setStage] = useState<number>(
+    hasValidSrc ? 0 : 1
+  );
+
+  const [isLoading, setIsLoading] = useState<boolean>(
+    hasValidSrc && !loadedImageSources.has(src as string)
+  );
+
+  useEffect(() => {
+    if (src && src.trim().length > 0) {
+      setStage(0);
+      setIsLoading(!loadedImageSources.has(src));
+    } else {
+      setStage(1);
+      setIsLoading(false);
+    }
+  }, [src]);
+
+  const getSourceForStage = (currentStage: number): string => {
+    switch (currentStage) {
+      case 0:
+        return src || FALLBACK_PATHS[fallbackType];
+      case 1:
+        return FALLBACK_PATHS[fallbackType];
+      default:
+        return SVG_DATA_URIS[fallbackType];
+    }
+  };
+
+  const currentSrc = getSourceForStage(stage);
+
+  const handleImageLoad = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    if (stage === 0 && src) {
+      loadedImageSources.add(src);
+    }
+
+    setIsLoading(false);
+    onLoad?.(e);
+  };
+
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    if (stage < 2) {
+      setStage((previousStage) => previousStage + 1);
+    } else {
+      setIsLoading(false);
+    }
+
+    onError?.(e);
+  };
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden ${containerClassName || className}`}>
       {isLoading && (
-        <div className="absolute inset-0 bg-stone-200 animate-pulse flex items-center justify-center">
-          <span className="text-[10px] text-stone-400 font-medium tracking-wide">FOODORA</span>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[#1C2530] border border-[#293241] animate-pulse flex flex-col items-center justify-center z-10 select-none"
+        >
+          <div className="w-6 h-6 rounded-full border-2 border-[#D4AF37]/40 border-t-[#D4AF37] animate-spin mb-1" />
+          <span className="text-[9px] font-black tracking-widest text-[#D4AF37]/70 uppercase">
+            FOODORA
+          </span>
         </div>
       )}
+
       <img
-        src={targetSrc}
+        src={currentSrc}
         alt={alt}
+        loading={loading}
         className={`w-full h-full object-cover transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        onLoad={() => setIsLoading(false)}
-        onError={() => {
-          if (!hasError) {
-            setHasError(true);
-            setIsLoading(false);
-          }
-        }}
+        } ${className}`}
+        onLoad={handleImageLoad}
+        onError={handleImageError}
         {...props}
       />
     </div>

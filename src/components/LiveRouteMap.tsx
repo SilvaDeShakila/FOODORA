@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import type { OrderStatus } from '../types/index.js';
 import { Bike, MapPin, Store, Navigation, Radio, Compass, Phone, MessageSquare, X, Send } from 'lucide-react';
 
@@ -119,7 +119,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#1C2530] text-[#D4AF37] text-xs font-bold border border-[#D4AF37]/30">
               <Radio className="w-3 h-3 animate-pulse text-[#D4AF37]" />
-              LIVE GPS TELEMETRY
+              DELIVERY STATUS UPDATES
             </span>
             <span className="text-xs text-[#94A3B8]">Colombo Express Corridor</span>
           </div>
@@ -133,7 +133,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
           <div className="flex items-center gap-3 bg-[#1C2530] border border-[#293241] px-4 py-2 rounded-2xl shadow-md">
             <Compass className="w-5 h-5 text-[#D4AF37] animate-spin" style={{ animationDuration: '6s' }} />
             <div>
-              <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider block font-bold">Estimated Arrival</span>
+              <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider block font-bold">Estimated Delivery</span>
               <span className="text-base sm:text-lg font-black text-[#D4AF37] font-mono">
                 ~{simulatedEtaMinutes}m {etaSeconds < 10 ? `0${etaSeconds}` : etaSeconds}s
               </span>
@@ -234,7 +234,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
               </div>
             </foreignObject>
             <text x="0" y="-22" textAnchor="middle" fill="#E8C66A" fontSize="10" fontWeight="bold">
-              🛵 {riderName.split(' ')[0]}
+              ðŸ›µ {riderName.split(' ')[0]}
             </text>
           </g>
         </svg>
@@ -246,7 +246,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
             <span>Marine Drive & Galle Rd Route</span>
           </div>
           <p className="text-[11px] text-[#94A3B8]">
-            Speed: 38 km/h • Vehicle: TVS King Express (WP BBD-4592)
+            Illustrative speed: 38 km/h - Vehicle: TVS King Express (WP BBD-4592)
           </p>
         </div>
       </div>
@@ -261,7 +261,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
             <div className="flex items-center gap-1.5">
               <h4 className="font-bold text-sm text-[#F8FAFC]">{riderName}</h4>
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/60">
-                Verified Rider
+                Rider Details
               </span>
             </div>
             <p className="text-xs text-[#94A3B8]">FOODORA Colombo Express Delivery Partner</p>
@@ -304,7 +304,7 @@ export const LiveRouteMap: React.FC<LiveRouteMapProps> = ({
                   <h4 className="font-bold text-sm leading-tight text-[#F8FAFC]">{riderName}</h4>
                   <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    Online & Riding
+                    Delivery in Progress
                   </span>
                 </div>
               </div>

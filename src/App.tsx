@@ -8,7 +8,7 @@ import { Navbar } from './components/Navbar.js';
 import { Footer } from './components/Footer.js';
 import { CartDrawer } from './components/CartDrawer.js';
 import { ProtectedRoute } from './components/ProtectedRoute.js';
-
+import { ScrollToTop } from './components/ScrollToTop.js';
 // Pages
 import { HomePage } from './pages/HomePage.js';
 import { RestaurantsPage } from './pages/RestaurantsPage.js';
@@ -27,6 +27,7 @@ import { RegisterPage } from './pages/RegisterPage.js';
 export default function App() {
   return (
     <BrowserRouter>
+<ScrollToTop />
       <ToastProvider>
         <AuthProvider>
           <CartProvider>
